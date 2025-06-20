@@ -11,6 +11,9 @@ import os
 app = Flask(__name__)
 app.secret_key = "sissy_oasis_secret_key"
 
+@app.route("/health")
+def health():
+    return jsonify({"status": "ok"}), 200
 # Configuration de l'API xAI
 API_KEY = "xai-brO1cDAipzQkNEyTEQRW7lsL1vqGkLc9yBkjYXgws6nQf2Uvn4lICPrapGw70krwXDH1D2zmsJE8jOqW"
 API_URL = "https://api.x.ai/v1/chat/completions"
