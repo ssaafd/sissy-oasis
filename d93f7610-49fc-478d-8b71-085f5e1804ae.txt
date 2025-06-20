@@ -1,0 +1,19 @@
+# Fichiers Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Base de données SQLite
+sissy_oasis.db
+
+# Environnements virtuels
+venv/
+env/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers de configuration sensible
+*.env
