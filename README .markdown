@@ -1,17 +1,16 @@
-# Sissy Oasis
+# Sissy Oasis (Web App)
 
-**Sissy Oasis** est un jeu interactif en Python avec une interface Tkinter, conçu pour une expérience de fiction immersive. Le jeu propose un chat avec Lila, une amie perverse et bimbo, qui guide l'utilisateur à travers des dialogues provocants, des tutoriels sérieux, et des sessions d'hypnose.
+**Sissy Oasis** est une application web Python basée sur Flask, conçue pour une expérience de fiction interactive immersive. L'application propose un chat avec Lila, une amie perverse et bimbo, qui guide l'utilisateur à travers des dialogues provocants, des tutoriels sérieux, et des sessions d'hypnose.
 
 **Attention** : Contenu explicite avec thèmes d’humiliation/féminisation. Destiné à un public adulte consenti.
 
 ## Prérequis
 
 - Python 3.8+
-- Tkinter (inclus avec Python, sur Linux : `sudo apt-get install python3-tk`)
-- Bibliothèque `requests` : `pip install requests`
 - Clé API xAI (obtenez-la via https://api.x.ai/docs)
+- Git (https://git-scm.com/download/win)
 
-## Installation
+## Installation locale
 
 1. Clonez le dépôt :
    ```bash
@@ -24,22 +23,34 @@
    pip install -r requirements.txt
    ```
 
-3. Vérifiez la clé API xAI dans `sissy_oasis.py` :
+3. Vérifiez la clé API xAI dans `app.py` :
    ```python
    API_KEY = "xai-brO1cDAipzQkNEyTEQRW7lsL1vqGkLc9yBkjYXgws6nQf2Uvn4lICPrapGw70krwXDH1D2zmsJE8jOqW"
    ```
 
-4. Lancez le jeu :
+4. Lancez l'application :
    ```bash
-   python sissy_oasis.py
+   python app.py
    ```
+   - Accédez à `http://localhost:5000` dans votre navigateur.
+
+## Déploiement sur Render
+
+1. Poussez le dépôt sur GitHub (voir ci-dessous).
+2. Connectez-vous à Render (https://render.com).
+3. Créez un nouveau "Web Service" et liez votre dépôt GitHub `sissy-oasis`.
+4. Configurez :
+   - **Build Command** : `pip install -r requirements.txt`
+   - **Start Command** : `gunicorn -w 4 -b 0.0.0.0:$PORT app:app`
+   - **Runtime** : Python
+5. Déployez et accédez à l'URL fournie par Render.
 
 ## Utilisation
 
-1. Choisissez une langue (français, anglais, espagnol).
+1. Accédez à l'application via le navigateur.
 2. Entrez le mot de passe général : "1245".
 3. Inscrivez-vous ou connectez-vous avec un prénom (ex. : "Chloé") et un mot de passe.
-4. Interagissez avec Lila via des messages tapés (appuyez sur "Envoyer" ou Entrée).
+4. Interagissez avec Lila via le chat :
    - Demandez des tutoriels (ex. : "apprends-moi à twerker" ou "parle-moi d'œstrogènes").
    - Tapez "stop" pour arrêter ("Jeu terminé.").
 
@@ -52,9 +63,6 @@ Hey, chérie ! C’est quoi ton prénom, poupée ? [Lila] (rose foncé)
 Vous: Chloé
 *Un sofa moelleux, parfum sucré.*
 Yo, Chloé ! T’as déjà rêvé d’être ultra sexy ? [Lila] (rose foncé)
-Vous: Apprends-moi à twerker
-*Une salle de danse, miroirs partout.*
-Salut, ma belle ! 1. Cambre le dos, 2. Secoue les hanches. Tu twerkes ? [Lila] (rose foncé)
 ```
 
 ## Fonctionnalités
@@ -66,25 +74,20 @@ Salut, ma belle ! 1. Cambre le dos, 2. Secoue les hanches. Tu twerkes ? [Lila] (
 - **Tutoriels sérieux** : Sur demande (ex. : twerk : "1. Cambre le dos, 2. Secoue les hanches").
 - **Œstrogènes** : Bénéfices (ex. : peau douce) + hypnose.
 - **Chasteté** : Rôle (ex. : soumission) + suggestion.
-- **Design** : Interface pastel (rose #ffeacc, lavande #f3e5f5, turquoise #00ced1), emojis (💕, 💋).
+- **Design** : Interface pastel (rose #ffeacc, lavande #f3e5f5).
 - **Sauvegarde** : SQLite (sissy_oasis.db).
 
 ## Résolution des problèmes
 
-- **Erreur 400 API** : Vérifiez la clé API dans `sissy_oasis.py` ou consultez https://api.x.ai/docs. Testez avec Postman :
+- **Erreur 400 API** : Vérifiez la clé API dans `app.py` ou consultez https://api.x.ai/docs. Testez avec cURL :
   ```bash
   curl -X POST https://api.x.ai/v1/chat/completions -H "Content-Type: application/json" -H "Authorization: Bearer xai-brO1cDAipzQkNEyTEQRW7lsL1vqGkLc9yBkjYXgws6nQf2Uvn4lICPrapGw70krwXDH1D2zmsJE8jOqW" -d '{"model": "grok-3-latest", "messages": [{"role": "user", "content": "Test"}]}'
   ```
-- **Tkinter manquant** : Installez Tkinter (Linux : `sudo apt-get install python3-tk`).
-- **SQLite** : Assurez-vous que `sissy_oasis.db` est accessible.
-- **Dialogues longs** : Contactez-moi pour ajuster le prompt.
-
-## Personnalisation
-
-Pour modifier :
-- **Tutoriels** : Ajoutez des scénarios dans `system_prompt`.
-- **Hypnose** : Augmentez les mantras dans `system_prompt`.
-- **Design** : Changez les couleurs/emojis dans le code.
+- **Dépôt GitHub** : Si erreur lors du push, supprimez le remote :
+  ```bash
+  git remote remove origin
+  git remote add origin https://github.com/your-username/sissy-oasis.git
+  ```
 
 ## Contribution
 
